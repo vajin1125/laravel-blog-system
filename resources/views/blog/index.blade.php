@@ -12,7 +12,11 @@
                         @guest
                         <span class="text-info">Login to create new post</span>
                         @else
-                        <a href="/blog/create/post" class="btn btn-primary btn-sm">Create Post</a>
+                            @if(Auth::check())
+                                @if (Auth::user()->name == 'Admin' || Auth::user()->name == 'Modera')
+                                    <a href="/blog/create/post" class="btn btn-primary btn-sm">Create Post</a>
+                                @endif
+                            @endif
                         @endguest
                     </div>
                 </div> 

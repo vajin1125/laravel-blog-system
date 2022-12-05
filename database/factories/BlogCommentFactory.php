@@ -20,7 +20,7 @@ class BlogCommentFactory extends Factory
     {
         return [
             'blog_post_id' => BlogPost::factory(),
-            'content' => $this->faker->paragraph(30), //generates fake 30 paragraphs
+            'content' => $this->faker->paragraph(10), //generates fake 30 paragraphs
             'user_id' => User::factory() //Generates a User from factory and extracts id
         ];
     }

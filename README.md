@@ -90,7 +90,7 @@ The api can be accessed at [http://localhost:8000/api](http://localhost:8000/api
 
 This application adheres to the api specifications set by the [Thinkster](https://github.com/vajin1125) team. This helps mix and match any backend with any other frontend without conflicts.
 
-> [Full API Spec](https://github.com/vajin1125/realworld/tree/master/api)
+> [Full API Spec](https://github.com/vajin1125)
 More information regarding the project can be found here https://github.com/vajin1125/laravel-blog-system
 
 ----------
