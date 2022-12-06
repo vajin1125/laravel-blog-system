@@ -81,14 +81,14 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now()
         ]);
         
-        $user_admin->roles()->sync([$role_admin->id]);
-        $user_moderator->roles()->sync([$role_moderator->id]);
-        $user_common->roles()->sync([$role_common->id]);
+        // $user_admin->roles()->sync([$role_admin->id]);
+        // $user_moderator->roles()->sync([$role_moderator->id]);
+        // $user_common->roles()->sync([$role_common->id]);
 
-        // User::factory(5)->create();
+        User::factory(1)->create();
 
         // BlogPost
-        BlogPost::factory(50)->has(BlogComment::factory(5))->create();
+        BlogPost::factory(100)->has(BlogComment::factory(50))->create();
 
         // BlogComment
         // BlogComment::factory()->has(Blog)

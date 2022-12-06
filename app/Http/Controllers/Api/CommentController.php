@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
-use App\Models\BlogPost;
-use App\Models\BlogComment;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBlogPostRequest;
-use App\Http\Resources\BlogPostResource;
+use App\Models\BlogComment;
+use App\Http\Requests\StoreBlogCommentRequest;
+use App\Http\Resources\BlogCommentResource;
 use Illuminate\Http\Request;
 
-class BlogPostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +17,7 @@ class BlogPostController extends Controller
      */
     public function index()
     {
-        $posts = BlogPost::with('author')->withCount('blogComments')->where('is_trash', '!=', 1)->orderBy('blog_comments_count', 'desc')->paginate(12);
-        // return response()->json([
-        //     'posts' => $posts
-        // ]);
-        return BlogPostResource::collection($posts);
+        //
     }
 
     /**
@@ -42,19 +36,19 @@ class BlogPostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogPostRequest $request)
+    public function store(StoreBlogCommentRequest $request)
     {
-        $post = BlogPost::create($request->all());
-        return new BlogPostResource($post);
+        $comment = BlogComment::create($request->all());
+        return new BlogCommentResource($comment);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BlogPost  $blogPost
+     * @param  \App\Models\BlogComment  $blogComment
      * @return \Illuminate\Http\Response
      */
-    public function show(BlogPost $blogPost)
+    public function show(BlogComment $blogComment)
     {
         //
     }
@@ -62,10 +56,10 @@ class BlogPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\BlogPost  $blogPost
+     * @param  \App\Models\BlogComment  $blogComment
      * @return \Illuminate\Http\Response
      */
-    public function edit(BlogPost $blogPost)
+    public function edit(BlogComment $blogComment)
     {
         //
     }
@@ -74,24 +68,23 @@ class BlogPostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BlogPost  $blogPost
+     * @param  \App\Models\BlogComment  $blogComment
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreBlogPostRequest $request, BlogPost $blogPost)
+    public function update(StoreBlogCommentRequest $request, BlogComment $blogComment)
     {
-        $blogPost->update($request->all());
-        return new BlogPostResource($blogPost);
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BlogPost  $blogPost
+     * @param  \App\Models\BlogComment  $blogComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BlogPost $blogPost)
+    public function destroy(BlogComment $blogComment)
     {
-        $blogPost->delete();
+        $blogComment->delete();
         return response(null, 204);
     }
 }

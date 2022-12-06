@@ -1,6 +1,9 @@
 <?php
 
-use \App\Http\Controllers\Api\BlogPostController;
+use App\Http\Controllers\Api\AuthenticateController;
+use App\Http\Controllers\Api\BlogPostController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +18,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum', 'verified')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('blogs', [BlogPostController::class, 'index']);
+//============================== Authentication ============================//
+Route::post('/authenticate', [AuthenticateController::class, 'authenticate'])->name('authenticate');
+Route::post('/register', [AuthenticateController::class, 'register'])->name('register');
+
+//================================ Users ===================================//
+Route::get('/users', [UserController::class, 'index']);
+
+//=============================== Posts ====================================//
+// Create: POST
+// Update: PUT
+// Show:   GET
+// Create: POST
+Route::apiResource('/blogs', BlogPostController::class);
+
+//=============================== Comments ====================================//
+// Create: POST
+// Create: POST
+Route::apiResource('/comments', CommentController::class);
