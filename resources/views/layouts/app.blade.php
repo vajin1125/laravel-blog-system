@@ -27,7 +27,7 @@
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="collapse navbar-collapse" id="navbarNav" style="flex-grow: 0">
                     <ul class="navbar-nav">
                         @guest
                         <li class="nav-item">

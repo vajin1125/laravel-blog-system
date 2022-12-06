@@ -67,24 +67,22 @@ Run the database seeder and you're done
 
     php artisan migrate:refresh
     
-## Docker
+## Login Accounts
 
-To install with [Docker](https://www.docker.com), run following commands:
+Login with Admininistrator account
 
-```
-git clone git@github.com:vajin1125/laravel-blog-system.git
-cd laravel-blog-system
-cp .env.example.docker .env
-docker run -v $(pwd):/app composer install
-cd ./docker
-docker-compose up -d
-docker-compose exec php php artisan key:generate
-docker-compose exec php php artisan migrate
-docker-compose exec php php artisan db:seed
-docker-compose exec php php artisan serve --host=0.0.0.0
-```
+    email: admin@laravelblog.com
+    password: admin@password
 
-The api can be accessed at [http://localhost:8000/api](http://localhost:8000/api).
+Login with Moderator account
+
+    email: modera@laravelblog.com
+    password: modera@password
+
+Login with Common User account
+
+    email: common@laravelblog.com
+    password: common@password
 
 ## API Specification
 
@@ -92,24 +90,6 @@ This application adheres to the api specifications set by the [Thinkster](https:
 
 > [Full API Spec](https://github.com/vajin1125)
 More information regarding the project can be found here https://github.com/vajin1125/laravel-blog-system
-
-----------
-
-# Code overview
-
-## Dependencies
-
-
-
-## Folders
-
-
-
-## Environment variables
-
-
-
-***Note*** : You can quickly set the database information and other variables in this file and have the application fully working.
 
 ----------
 
@@ -123,31 +103,21 @@ The api can now be accessed at
 
     http://localhost:8000/api
 
-Request headers
+The api urls
 
-| **Required** 	| **Key**              	| **Value**            	|
-|----------	|------------------	|------------------	|
-| Yes      	| Content-Type     	| application/json 	|
-| Yes      	| X-Requested-With 	| XMLHttpRequest   	|
-| Optional 	| Authorization    	| Token {JWT}      	|
+| **Method** | **URL**              	| **Description**            	               |
+|----------	|---------------------------|----------------------------------------------|
+| POST     	| /api/authenticate     	| Login user with posted value 	               |
+| POST    	| /api/register         	| Register user with posted value              |
+| GET    	| /api/users    	        | Get all registered users     	               |
+| GET       | /api/blogs                | Get all blogs                                |
+| POST      | /api/blogs                | Create a blog with posted value              |
+| PUT       | /api/blogs/{blog_id}      | Update a blog with updated value of blog_id  |
+| DELETE    | /api/blogs/{blog_id}      | Destroy a blog with blog_id                  |
+| GET       | /api/comments             | Get all comments                             |
+| POST      | /api/comments/{comment_id}| Create a comment with values of comment_id   |
+| PUT       | /api/comments/{comment_id}| Update a comment with value of comment_id    |
+| DELETE    | /api/comments/{comment_id}| Destroy a comment with comment_id            |
+
 
 Refer the [api specification](#api-specification) for more info.
-
-----------
- 
-# Authentication
- 
-This applications uses JSON Web Token (JWT) to handle authentication. The token is passed with each request using the `Authorization` header with `Token` scheme. The JWT authentication middleware handles the validation and authentication of the token. Please check the following sources to learn more about JWT.
- 
-- https://jwt.io/introduction/
-- https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html
-
-----------
-
-# Cross-Origin Resource Sharing (CORS)
- 
-This applications has CORS enabled by default on all API endpoints. The default configuration allows requests from `http://localhost:3000` and `http://localhost:4200` to help speed up your frontend testing. The CORS allowed origins can be changed by setting them in the config file. Please check the following sources to learn more about CORS.
- 
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-- https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
-- https://www.w3.org/TR/cors

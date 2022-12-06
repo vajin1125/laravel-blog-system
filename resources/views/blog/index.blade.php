@@ -25,18 +25,6 @@
         <div class="row">
             {{ $posts->links() }}
             @forelse($posts as $post)
-                <!-- <ul> -->
-                    <!-- <li><a href="./blog/{{ $post->id }}">{{ ucfirst($post->title) }}</a></li> -->
-                    <!-- <div class="col-3 m-2 flex card" style="height:400px;">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="./blog/{{ $post->id }}">{{ ucfirst($post->title) }}</a></h4>
-                            <div style="height:200px; overflow:hidden; text-overflow: ellipsis;">
-                                <p class="card-body">{{ $post->body }}</p>
-                            </div>
-                            <p class="card-text">Author: {{ $post->author->username }} Date: {{ $post->created_at }} Total comments: {{ $post->blog_comments_count }}</p>
-                        </div>
-                    </div> -->
-                <!-- </ul> -->
                 <div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex">
                     <div class="card mb-4">
                         <img class="card-img" src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/pasta.jpg" alt="Bologna">

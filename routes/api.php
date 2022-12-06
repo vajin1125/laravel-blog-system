@@ -30,13 +30,13 @@ Route::post('/register', [AuthenticateController::class, 'register'])->name('reg
 Route::get('/users', [UserController::class, 'index']);
 
 //=============================== Posts ====================================//
-// Create: POST
-// Update: PUT
-// Show:   GET
-// Create: POST
+// Create:  POST
+// Update:  PUT
+// Show:    GET
+// Destroy: POST
 Route::apiResource('/blogs', BlogPostController::class);
 
 //=============================== Comments ====================================//
 // Create: POST
-// Create: POST
+// Update: PUT
 Route::apiResource('/comments', CommentController::class);
